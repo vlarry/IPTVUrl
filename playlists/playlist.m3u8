@@ -1,0 +1,48 @@
+#EXTM3U
+
+#EXTINF: -1 tvg-id="2044" tvg-logo="2044.png" group-title="Кино", Мужское кино
+http://178.124.183.5/hls/W7LNWHFGTB/variant.m3u8?version=2
+
+#EXTINF:-1 tvg-id="288" tvg-logo="288.png" group-title="Кино", TV1000
+http://185.176.117.243/live/eds/TV1000_SD/HLS_encr/TV1000_SD.m3u8
+
+#EXTINF:-1 tvg-id="300047" tvg-logo="300047.png" group-title="Кино", TV1000 Action
+http://185.176.117.243/live/eds/TV1000_action_SD/HLS_encr/TV1000_action_SD.m3u8
+
+#EXTINF:-1 tvg-id="2401" tvg-logo="2401.png" group-title="Кино", BOLT
+http://178.124.183.5/hls/CH_BOLT/variant.m3u8?version=2
+
+#EXTINF:-1 tvg-id="300010" tvg-logo="300010.png" group-title="Кино", FOX
+http://178.124.183.5/hls/CH_FOX/variant.m3u8?version=2
+
+#EXTINF:-1 tvg-shift=-1 tvg-id="300056" tvg-logo="300056.png" group-title="Кино", FOX Life
+http://178.124.183.5/hls/CH_FOXL/variant.m3u8?version=2
+
+#EXTINF:-1 tvg-id="201" tvg-logo="201.png" group-title="Кино", Киносвидание
+http://46.32.68.167/s/live/267/86.169.51.136/0/0.m3u8
+
+#EXTINF:-1 tvg-id="100037" tvg-logo="100037.png" group-title="Кино", Киносемья
+http://178.124.183.5/hls/FEDXG8XPOR/variant.m3u8?version=2
+
+#EXTINF:-1 tvg-id="558" tvg-logo="558.png" group-title="Кино", Киносерия
+http://178.124.183.5/hls/CH_KINOSERIA/variant.m3u8?version=2
+
+#EXTINF:-1 tvg-id="291" tvg-logo="291.png" group-title="Кино", Кинокомедия
+http://46.32.68.167/s/live/254/86.169.51.136/1/0.m3u8
+
+
+#EXTINF:-1 tvg-id="300039" tvg-logo="300039.png" group-title="Развлекательные", Канал 1+1
+http://188.35.9.11:2001
+
+#EXTINF:-1 tvg-id="300016" tvg-logo="300016.png" group-title="Развлекательные", Iнтер
+http://109.68.41.148:1935/live/inter_3/playlist.m3u8
+
+
+#EXTINF:-1 tvg-id="218" tvg-logo="218.png" group-title="Детские", Nickelodeon
+http://46.32.68.167/s/live/602/86.169.51.136/0/0.m3u8
+
+#EXTINF:-1 tvg-id="100075.png" group-title="Детские", Boomerang
+http://178.124.183.5/hls/JSQ2S6VQTE/variant.m3u8?version=2
+
+#EXTINF:-1 tvg-id="211" tvg-logo="211.png" group-title="Детские", Cartoon Network
+http://178.124.183.5/hls/CNVX7JRQJI/variant.m3u8?version=2
