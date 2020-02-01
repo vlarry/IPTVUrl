@@ -1,5 +1,6 @@
 import requests
 import time
+import os
 
 
 def playlist_source_load(playlist_path):
@@ -48,16 +49,44 @@ def playlist_channel_load(playlist_path):
     return channels
 
 
+def playlist_load_file(urls):
+    # функция для скачивания файлов плейлистов
+    playlist_file_list = []
+    path = "playlists/dumps"
+
+    if not os.path.isdir(path):
+        os.mkdir(path)
+
+    for url in urls:
+        try:
+            request = requests.get(url)
+        except Exception:
+            print("Не удалось скачать плейлист: {0}".format(url))
+            continue
+
+        if request.status_code == 200:
+            param_list = url.split('/')
+            name = param_list[-1].strip().rstrip('\n').rstrip('\r')
+
+            pl_path = "{0}/{1}".format(path, name)
+
+            print("Запись плейлиста: {0}".format(pl_path))
+            with open(pl_path, "w", encoding='utf-8') as file:
+                file.write(request.text)
+                playlist_file_list.append(pl_path)
+
+    return playlist_file_list
+
+
 def playlist_channel_url_find(urls, channels):
     # Функция поиска ссылок по каналам
     channel_dict = dict()
 
     for channel in channels:
         for url in urls:
-            request = requests.get(url)
-            request.encoding = 'utf-8'
-            if request.status_code == 200:
-                lines = request.text.split('\n')
+            print("Поиск канала \"{0}\" в плейлисте \"{1}\"".format(channel, url))
+            with open(url, "r", encoding='utf-8') as file:
+                lines = file.read().split('\n')
                 rows = len(lines)
                 row = 0
 
@@ -66,10 +95,7 @@ def playlist_channel_url_find(urls, channels):
                 while row < rows:
                     line = lines[row]
                     if line.startswith("#EXTINF:"):
-                        channel_cur = line.split(',')[-1]
-                        channel_cur = channel_cur.strip()
-                        channel_cur = channel_cur.rstrip('\n')
-                        channel_cur = channel_cur.rstrip('\r')
+                        channel_cur = line.split(',')[-1].strip().rstrip('\n').rstrip('\r')
                         if channel.upper() == channel_cur.upper():
                             row += 1
                             while row < rows:
@@ -110,6 +136,7 @@ def playlist_url_time(url):
     # Функця замера времени отклика ссылки
     result = 0
     count = 5  # количество попыток пинга ссылки
+    crash = 0
     i = 0
     while i < 5:
         start = time.time()
@@ -118,6 +145,8 @@ def playlist_url_time(url):
             if request.status_code == 200:
                 result += round(time.time() - start, 3)
         except Exception:
-            print("Сбой запроса №{0} ссылки: {1}".format(i + 1, url))
-        i += 1
+            print("Попытка №{0}: ресурс \"{1}\" недоступен".format(crash + 1, url))
+            crash += 1
+        finally:
+            i += 1
     return round(result / count, 3)
