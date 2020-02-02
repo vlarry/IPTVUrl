@@ -119,13 +119,16 @@ def playlist_write(name, channels, path):
     # Функция записи результатов поиска ссылок в файл + добавление времени отклика ссылки
     with open(path, "a", encoding='utf-8') as file:
         file.write("Канал \"{0}\":\n".format(name))
-
+        print("Запись канала \"{0}\"".format(name))
         count = 0  # счетчик рабочих ссылок
         for channel in channels:
             time_url = playlist_url_time(channel)
             if time_url > 0.0:
                 file.write("{0} - {1}сек.\n".format(channel, time_url))
+                print("Канал \"{0}\" доступен! ({1})".format(name, channel))
                 count += 1
+            else:
+                print("Канал \"{0}\" недоступен! ({1})".format(name, channel))
 
         if not count:
             file.write("Нет валидных ссылок\n")
@@ -145,7 +148,7 @@ def playlist_url_time(url):
             if request.status_code == 200:
                 result += round(time.time() - start, 3)
         except Exception:
-            print("Попытка №{0}: ресурс \"{1}\" недоступен".format(crash + 1, url))
+            print("Попытка №{0}: Ресурс \"{1}\" недоступен".format(crash + 1, url))
             crash += 1
         finally:
             i += 1

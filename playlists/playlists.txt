@@ -3,3 +3,4 @@ https://webhalpme.ru/if.m3u
 https://smarttvnews.ru/apps/iptvchannels.m3u
 https://smarttvnews.ru/apps/iptvfreefull.m3u
 https://webhalpme.ru/kids.m3u
+https://iptvm3u.ru/0120.m3u
